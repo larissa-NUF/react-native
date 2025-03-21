@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { View, Text, FlatList, Button, Image, StyleSheet, ActivityIndicator, Alert } from "react-native";
 
 import { Link } from "expo-router";
-import { Contato } from "../../api/model/contato";
-import { deleteContato, getContatos } from "../../api/service/contato";
+import { deleteContato, getContatos } from "@/api/service/contato";
+import { Contato } from "@/api/model/contato";
+
 
 export default function ListarContatos() {
   const [contatos, setContatos] = useState<Contato[]>([]);
@@ -60,7 +61,7 @@ export default function ListarContatos() {
           </View>
         )}
       />
-      <Link href="/adicionar" style={styles.botaoAdicionar}>
+      <Link href="/formulario" style={styles.botaoAdicionar}>
         <Text style={styles.textoBotao}>Adicionar Contato</Text>
       </Link>
     </View>
@@ -68,7 +69,7 @@ export default function ListarContatos() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
+  container: { flex: 1, padding: 20, backgroundColor: "#fff" },
   contato: { flexDirection: "row", padding: 10, borderBottomWidth: 1 },
   foto: { width: 50, height: 50, borderRadius: 25 },
   semFoto: { width: 50, height: 50, justifyContent: "center", alignItems: "center", backgroundColor: "#ddd", borderRadius: 25 },

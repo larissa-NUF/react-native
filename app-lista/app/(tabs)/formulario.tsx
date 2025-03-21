@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Alert, Button, StyleSheet, TextInput, View } from "react-native";
+import { View, TextInput, Button, StyleSheet, Alert } from "react-native";
+import { addContato } from "../../api/service/contato";
+import { router } from "expo-router";
 
 export default function Formulario() {
   const [nome, setNome] = useState("");
@@ -15,9 +16,9 @@ export default function Formulario() {
     }
 
     try {
-      //await addContato({ nome, email, telefone, endereco, foto: "#" });
+      await addContato({ nome, email, telefone, endereco, foto: "#" });
       Alert.alert("Sucesso", "Contato adicionado!");
-      //router.back();
+      router.back();
     } catch (error) {
       Alert.alert("Erro", "Não foi possível adicionar o contato.");
     }
@@ -35,7 +36,7 @@ export default function Formulario() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  contato: { flexDirection: "row", padding: 10, borderBottomWidth: 1 },
-  input: { padding: 20, fontSize: 16, color: "black",},
-});
+    container: { flex: 1, padding: 20, backgroundColor: "white" },
+    contato: { flexDirection: "row", padding: 10, borderBottomWidth: 1 },
+    input: { padding: 20, fontSize: 16, color: "black",},
+  });
