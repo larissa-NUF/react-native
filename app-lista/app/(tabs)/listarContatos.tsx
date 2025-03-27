@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, Text, FlatList, Button, Image, StyleSheet, ActivityIndicator, Alert } from "react-native";
 
-import { Link } from "expo-router";
+import { Link, useNavigation } from "expo-router";
 import { deleteContato, getContatos } from "@/api/service/contato";
 import { Contato } from "@/api/model/contato";
 
@@ -9,6 +9,7 @@ import { Contato } from "@/api/model/contato";
 export default function ListarContatos() {
   const [contatos, setContatos] = useState<Contato[]>([]);
   const [loading, setLoading] = useState(true);
+  const navigation = useNavigation();
 
   const carregarContatos = async () => {
     try {
@@ -57,6 +58,14 @@ export default function ListarContatos() {
               <Text>{item.telefone}</Text>
               <Text>{item.endereco}</Text>
               <Button title="Excluir" onPress={() => handleDelete(item._id)} />
+              <Button title="Detalhes" onPress={() => {
+                /* 1. Navigate to the Details route with params */
+                navigation.navigate('detalhes', {id: item._id});
+              }} />
+              <Button title="Editar" onPress={() => {
+                /* 1. Navigate to the Details route with params */
+                navigation.navigate('formulario', {id: item._id});
+              }} />
             </View>
           </View>
         )}
