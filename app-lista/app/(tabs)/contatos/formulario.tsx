@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { View, TextInput, Button, StyleSheet, Alert } from "react-native";
-import { addContato, getContatoById, updateContato } from "../../api/service/contato";
+import { addContato, getContatoById, updateContato } from "../../../api/service/contato";
 import { router, useGlobalSearchParams } from "expo-router";
 import { Contato } from "@/api/model/contato";
 import { RouteProp, useRoute } from "@react-navigation/native";
@@ -32,6 +32,7 @@ export default function Formulario() {
   };
 
   const handleSubmit = async () => {
+
     if (!dados.nome || !dados.email || !dados.telefone || !dados.endereco) {
       Alert.alert("Erro", "Preencha todos os campos");
       return;

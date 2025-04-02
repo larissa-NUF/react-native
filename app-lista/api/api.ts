@@ -1,6 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const api = axios.create({
-  baseURL: "https://api-mong-db-yp8x.onrender.com",
-  timeout: 60000,
+const api = axios.create({
+  baseURL: 'http://localhost:3000',
 });
+
+export const setAuthToken = (token: string) => {
+  api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+};
+
+export default api;

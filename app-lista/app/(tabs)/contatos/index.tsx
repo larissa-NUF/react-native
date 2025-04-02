@@ -33,7 +33,9 @@ export default function ListarContatos() {
   };
 
   useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', carregarContatos);
     carregarContatos();
+    return unsubscribe;
   }, []);
 
   if (loading) return <ActivityIndicator size="large" color="blue" />;
@@ -70,7 +72,7 @@ export default function ListarContatos() {
           </View>
         )}
       />
-      <Link href="/formulario" style={styles.botaoAdicionar}>
+      <Link href="/contatos/formulario" style={styles.botaoAdicionar}>
         <Text style={styles.textoBotao}>Adicionar Contato</Text>
       </Link>
     </View>
